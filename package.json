@@ -1,0 +1,28 @@
+{
+  "name": "code-30-oct-2021-utkarsh-yatin-mehta",
+  "version": "1.0.0",
+  "description": "BMI Calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ukrocks007/code-30-Oct-2021-Utkarsh-Yatin-Mehta.git"
+  },
+  "keywords": [
+    "BMI"
+  ],
+  "author": "Utkarsh Mehta <utkarsh.mehta678@live.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ukrocks007/code-30-Oct-2021-Utkarsh-Yatin-Mehta/issues"
+  },
+  "homepage": "https://github.com/ukrocks007/code-30-Oct-2021-Utkarsh-Yatin-Mehta#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0"
+  }
+}
