@@ -19,20 +19,14 @@ app.use(morgan('tiny'));
 
 app.post('/', async (req, res) => {
     try {
-        let peoples = req.body;
-        console.log(peoples.length);
-        for (let i = 0; i < peoples.length; i++) {
-            let bmi = BMIService.getBMI(peoples[i]);
-            let bmiCategory = BMIService.getBMICategory(bmi);
-            let healthRisk = BMIService.getHealthRisk(bmi);
-            peoples[i] = {
-                ...peoples[i],
-                bmi: bmi,
-                bmiCategory: bmiCategory,
-                healthRisk: healthRisk
-            }
-        }
-        res.status(200).json(peoples);
+        let persons = req.body;
+        console.log(persons.length);
+        
+        // Initial approach sequential processing 
+        // res.status(200).json(persons.map(person => updateData(person)));
+
+        //Second approach parallel processing
+        Promise.all(persons.map(person => updateData(person))).then(data => res.status(200).json(data));
     } catch (ex) {
         console.log(ex);
         res.status(500).send(ex);
@@ -42,3 +36,16 @@ app.post('/', async (req, res) => {
 app.listen(3000, 'localhost');
 
 console.log(`Started on port 3000`);
+
+function updateData(person) {
+    let bmi = BMIService.getBMI(person);
+    let bmiCategory = BMIService.getBMICategory(bmi);
+    let healthRisk = BMIService.getHealthRisk(bmi);
+    person = {
+        ...person,
+        bmi: bmi,
+        bmiCategory: bmiCategory,
+        healthRisk: healthRisk
+    };
+    return person;
+}
